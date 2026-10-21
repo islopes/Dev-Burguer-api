@@ -1,1 +1,3 @@
 node_modules
+
+$ docker run --name dev-burguer-api -e POSTGRES_USER=admin -e POSTGRES_PASSWORD=123456 -e POSTGRES_DB=dev-burguer-db -p 5432:5432 postgres
