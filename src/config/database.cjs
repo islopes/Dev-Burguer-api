@@ -1,10 +1,11 @@
 module.exports = {
-  dialet: "postgres",
+  dialect: "postgres",
   host: "localhost",
-  post: "5432",
+  port: "5432", // Changed from 'post' to 'port'
   username: "admin",
   password: "123456",
   database: "dev-burguer-db",
+
   define: {
     timestamps: true,
     underscored: true,
