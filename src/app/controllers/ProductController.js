@@ -1,4 +1,5 @@
 import * as Yup from "yup";
+import Product from "./../models/Product.js";
 
 class ProductController {
   async store(request, response) {
@@ -9,11 +10,33 @@ class ProductController {
     });
 
     try {
-      schema.validateSync(request.body, { abortEarly: false, strict: true });
+      schema.validateSync(request.body, { abortEarly: false });
     } catch (err) {
       return response.status(400).json({ error: err.errors });
     }
-    return response.status(201).json({ Ok: true });
+
+    // //  REMOVIDO O 'id' DAQUI (ele vem do banco, não do body)
+    const { name, price, category } = request.body;
+    const { filename } = request.file;
+
+    // //  REMOVIDO O 'id' DAQUI TAMBÉM
+    const newProduct = await Product.create({
+      name,
+      price,
+      category,
+      path: filename,
+    });
+
+    // // O 'newProduct' já vai retornar com o ID gerado pelo PostgreSQL automaticamente!
+    return response.status(201).json(newProduct);
+  }
+
+  async index(_request, response) {
+    const products = await Product.findAll();
+
+    console.log(_request.userId);
+
+    return response.status(200).json(products);
   }
 }
 
