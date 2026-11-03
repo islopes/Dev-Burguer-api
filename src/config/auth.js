@@ -1,4 +1,4 @@
 export default {
-  secret: "ce3ccdabbe9a2bf4d9333f45d215990b",
+  secret: "a-string-secret-at-least-256-bits-long",
   expiresIn: "7d",
 };
