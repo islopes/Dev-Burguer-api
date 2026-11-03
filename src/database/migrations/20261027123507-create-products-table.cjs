@@ -22,8 +22,8 @@ module.exports = {
         type: Sequelize.STRING(),
         allowNull: false,
       },
-      categgory: {
-        type: Sequelize.STRING,
+      category: {
+        type: Sequelize.STRING(),
         allowNull: false,
       },
       create_at: {
@@ -37,7 +37,7 @@ module.exports = {
     });
   },
 
-  async down(queryInterface, Sequelize) {
+  async down(queryInterface) {
     await queryInterface.dropTable("products");
   },
 };
