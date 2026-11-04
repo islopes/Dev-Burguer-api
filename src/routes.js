@@ -13,10 +13,17 @@ const upload = multer(multerConfig);
 
 routes.post("/users", UserController.store);
 routes.post("/session", SessionController.store);
+
 routes.use(authMiddleware); // Todas as rotas abaixo vão precisar de autenticação
-routes.post("/products", upload.single("file"), ProductController.store);
+routes.post(
+  "/products",
+  authMiddleware,
+  upload.single("file"),
+  ProductController.store,
+);
 routes.get("/products", authMiddleware, ProductController.index);
 
-routes.post("/categories", CategoryController.store);
+routes.post("/categories", authMiddleware, CategoryController.store);
 routes.get("/categories", CategoryController.index);
+
 export default routes;

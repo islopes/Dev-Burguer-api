@@ -1,5 +1,4 @@
 import * as Yup from "yup";
-import Product from "./../models/Product.js";
 import Category from "./../models/Category.js";
 
 class CategoryController {
