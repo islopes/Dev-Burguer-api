@@ -21,6 +21,13 @@ routes.post(
   upload.single("file"),
   ProductController.store,
 );
+routes.put(
+  // atualização de produto
+  "/products:id",
+  authMiddleware,
+  upload.single("file"),
+  ProductController.update,
+);
 routes.get("/products", authMiddleware, ProductController.index);
 
 routes.post("/categories", authMiddleware, CategoryController.store);
