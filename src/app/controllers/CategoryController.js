@@ -15,6 +15,7 @@ class CategoryController {
 
     // //  REMOVIDO O 'id' DAQUI (ele vem do banco, não do body)
     const { name } = request.body;
+    const { filename } = request.file; // Obtém o arquivo enviado na requisição (se houver)
 
     const existingCategory = await Category.findOne({
       where: {
@@ -29,6 +30,7 @@ class CategoryController {
     // //  REMOVIDO O 'id' DAQUI TAMBÉM
     const newCategory = await Category.create({
       name,
+      package: filename, // Salva o nome do arquivo no campo "package" do modelo Category
     });
 
     // // O 'newProduct' já vai retornar com o ID gerado pelo PostgreSQL automaticamente!
