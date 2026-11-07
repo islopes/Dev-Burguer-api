@@ -36,6 +36,12 @@ routes.post(
   upload.single("file"),
   CategoryController.store,
 );
+routes.put(
+  "/categories/:id",
+  authMiddleware,
+  upload.single("file"),
+  CategoryController.update,
+);
 routes.get("/categories", CategoryController.index);
 
 export default routes;

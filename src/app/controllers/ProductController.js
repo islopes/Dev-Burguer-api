@@ -1,5 +1,6 @@
 import * as Yup from "yup";
 import Product from "./../models/Product.js";
+import Category from "./../models/Category.js";
 
 class ProductController {
   async store(request, response) {
@@ -67,7 +68,8 @@ class ProductController {
       },
       {
         where: {
-          id,
+          // Atualiza o produto com base no ID fornecido nos parâmetros da rota
+          id, // Certifique-se de que o ID seja passado corretamente na rota para identificar o produto a ser atualizado
         },
       },
     );
@@ -79,7 +81,7 @@ class ProductController {
   async index(_request, response) {
     const products = await Product.findAll({
       include: {
-        model: "Category",
+        model: Category,
         as: "category",
         attributes: ["id", "name"],
       },
