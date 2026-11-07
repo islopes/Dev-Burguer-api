@@ -6,6 +6,7 @@ import multerConfig from "./config/multer.cjs";
 import multer from "multer";
 import authMiddleware from "./middlewares/auth.js";
 import CategoryController from "./app/controllers/CategoryController.js";
+import OrderController from "./app/controllers/OrderController.js";
 
 const routes = new Router();
 
@@ -43,5 +44,6 @@ routes.put(
   CategoryController.update,
 );
 routes.get("/categories", CategoryController.index);
+routes.post("/orders", authMiddleware, OrderController.store);
 
 export default routes;
