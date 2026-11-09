@@ -44,6 +44,9 @@ routes.put(
   CategoryController.update,
 );
 routes.get("/categories", CategoryController.index);
-routes.post("/orders", authMiddleware, OrderController.store);
+routes.post("/orders", OrderController.store);
+routes.get("/orders", OrderController.index);
+
+routes.put("/orders:id", authMiddleware, OrderController.update);
 
 export default routes;
